@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Episode Limit</title>
+    <style>
+        .episodeLimitContainer {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .hero {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .hero h1 {
+            margin: 0 0 10px 0;
+            color: #00a4dc;
+        }
+        .hero p {
+            margin: 0;
+            color: #aaa;
+            font-size: 1.1em;
+        }
+        .howto {
+            background: #252542;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .howto h2 {
+            color: #00a4dc;
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+        .step:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .stepNum {
+            background: #00a4dc;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .stepContent h3 {
+            margin: 0 0 5px 0;
+            color: #fff;
+        }
+        .stepContent p {
+            margin: 0;
+            color: #aaa;
+        }
+        .setupSection {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .setupSection h2 {
+            color: #ffc107;
+            margin-top: 0;
+        }
+        .codeBlock {
+            background: #0d0d1a;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #4caf50;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .timeRef {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .timeCard {
+            background: #333;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .timeCard .num {
+            font-size: 2em;
+            color: #00a4dc;
+            font-weight: bold;
+        }
+        .timeCard .label {
+            color: #888;
+            font-size: 0.9em;
+        }
+        .note {
+            background: #2d2d00;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .note strong {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div id="EpisodeLimitConfigPage" data-role="page" class="page type-interior pluginConfigurationPage">
+        <div data-role="content">
+            <div class="content-primary">
+                <div class="episodeLimitContainer">
+                    
+                    <div class="hero">
+                        <h1>🌙 Episode Limit</h1>
+                        <p>Stop playback after X episodes — perfect for falling asleep!</p>
+                    </div>
+
+                    <div class="howto">
+                        <h2>How to Use</h2>
+                        
+                        <div class="step">
+                            <div class="stepNum">1</div>
+                            <div class="stepContent">
+                                <h3>Start watching a show</h3>
+                                <p>Play any TV episode as normal</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="stepNum">2</div>
+                            <div class="stepContent">
+                                <h3>Tap to show controls</h3>
+                                <p>Tap the screen to reveal the player controls</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="stepNum">3</div>
+                            <div class="stepContent">
+                                <h3>Tap the moon/bedtime icon 🌙</h3>
+                                <p>Look for the bedtime icon in the control bar</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="stepNum">4</div>
+                            <div class="stepContent">
+                                <h3>Choose your limit</h3>
+                                <p>Pick 1-5 with the quick buttons, or enter a custom number up to 100</p>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="stepNum">5</div>
+                            <div class="stepContent">
+                                <h3>Sleep easy!</h3>
+                                <p>The icon turns green. After your episodes finish, playback stops automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setupSection">
+                        <h2>⚡ One-Time Setup (30 seconds)</h2>
+                        <p>To show the button in the player, add this to <strong>Dashboard → General → Custom JavaScript</strong>:</p>
+                        <div class="codeBlock">/* Episode Limit Plugin */
+(function(){var s=document.createElement('script');s.src='/EpisodeLimit/episodelimit.js';s.async=true;document.head.appendChild(s);})();</div>
+                        <p style="color: #888; font-size: 0.9em; margin-top: 10px;">After adding, click Save and refresh your browser. The 🌙 button will appear in the player!</p>
+                    </div>
+
+                    <div class="howto">
+                        <h2>Works with Any Media</h2>
+                        <p style="color: #aaa;">The plugin counts completed files, not time. So it works with everything!</p>
+                        <div class="timeRef">
+                            <div class="timeCard">
+                                <div class="num">🎬</div>
+                                <div class="label">Short episodes</div>
+                            </div>
+                            <div class="timeCard">
+                                <div class="num">📺</div>
+                                <div class="label">Long episodes</div>
+                            </div>
+                            <div class="timeCard">
+                                <div class="num">🎥</div>
+                                <div class="label">Movies</div>
+                            </div>
+                            <div class="timeCard">
+                                <div class="num">🎵</div>
+                                <div class="label">Music/Concerts</div>
+                            </div>
+                        </div>
+                        <p style="color: #888; margin-top: 15px; text-align: center;">
+                            <strong>Example:</strong> Set to 3 = stops after 3 files finish, regardless of length
+                        </p>
+                    </div>
+
+                    <div class="note">
+                        <strong>Note:</strong> The limit resets after it triggers. You'll set it fresh each night — 
+                        this way you're always in control and it won't surprise you by stopping when you don't expect it!
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
