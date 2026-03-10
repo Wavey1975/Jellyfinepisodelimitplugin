@@ -59,3 +59,5 @@ Then remove the plugin from Jellyfin Dashboard → Plugins → My Plugins.
 ---
 
 Made with 🌙 for better sleep
+
+A collaboration between Wavey1975 and Claude (Opus 4.5 Ext), created Tuesday 10th March 2026.
