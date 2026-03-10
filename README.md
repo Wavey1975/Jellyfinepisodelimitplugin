@@ -8,7 +8,22 @@ Adds a 🌙 moon button to the video player. Set how many episodes to play befor
 
 ## Installation
 
-### Step 1: Run the Installer
+### Step 1: Add the Plugin Repository
+
+1. Go to **Dashboard** → **Plugins** → **Manage Repositories**
+2. Click **+ New Repository**
+3. Add:
+   - **Name:** `Episode Limit`
+   - **URL:** `https://raw.githubusercontent.com/Wavey1975/Jellyfinepisodelimitplugin/main/manifest.json`
+4. Click **Save**
+
+### Step 2: Install the Plugin
+
+1. Go to **Plugins** → **Available** → **General**
+2. Click **Install** on Episode Limit
+3. Restart Jellyfin
+
+### Step 3: Enable the Player Button
 
 SSH into your Jellyfin server and run:
 
@@ -18,20 +33,9 @@ curl -sSL https://raw.githubusercontent.com/Wavey1975/Jellyfinepisodelimitplugin
 
 **For LXC containers (Proxmox):** First run `pct enter <container_id>` then run the command above.
 
-### Step 2: Add the Plugin in Jellyfin
+### Step 4: Refresh Your Browser
 
-1. Go to **Dashboard** → **Plugins** → **Manage Repositories**
-2. Click **+ New Repository**
-3. Add:
-   - **Name:** `Episode Limit`
-   - **URL:** `https://raw.githubusercontent.com/Wavey1975/Jellyfinepisodelimitplugin/main/manifest.json`
-
-### Step 3: Install and Restart
-
-1. Go to **Plugins** → **Available** → **General**
-2. Click **Install** on Episode Limit
-3. Restart Jellyfin
-4. Hard refresh your browser (Ctrl+Shift+R or Cmd+Shift+R)
+Hard refresh your browser (Ctrl+Shift+R or Cmd+Shift+R) and you're done!
 
 ---
 
@@ -50,7 +54,7 @@ curl -sSL https://raw.githubusercontent.com/Wavey1975/Jellyfinepisodelimitplugin
 curl -sSL https://raw.githubusercontent.com/Wavey1975/Jellyfinepisodelimitplugin/main/uninstall.sh | bash
 ```
 
-Then remove the plugin from Jellyfin Dashboard.
+Then remove the plugin from Jellyfin Dashboard → Plugins → My Plugins.
 
 ---
 
