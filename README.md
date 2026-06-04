@@ -61,3 +61,19 @@ Then remove the plugin from Jellyfin Dashboard → Plugins → My Plugins.
 Made with 🌙 for better sleep
 
 A collaboration between Wavey1975 and Claude (Opus 4.5 Ext), created Tuesday 10th March 2026.
+
+## ⚠️ Important for Jellyfin 10.11+ Users
+
+Due to security changes in Jellyfin 10.11, automatic script injection is disabled.
+
+**To enable the moon button:**
+
+1. Go to **Dashboard > General > Custom CSS**
+2. You will see instructions there from the plugin
+3. **Alternatively**, open your browser's Developer Tools (F12 or Cmd+Option+I)
+4. Go to the **Console** tab
+5. Paste this code and press Enter:
+   ```javascript
+   var s = document.createElement('script');
+   s.src = '/EpisodeLimit/episodelimit.js';
+   document.head.appendChild(s);
