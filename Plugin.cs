@@ -1,34 +1,54 @@
-public async Task StartAsync(CancellationToken cancellationToken)
+using System;
+using System.Collections.Generic;
+using Jellyfin.Plugin.EpisodeLimit.Configuration;
+using MediaBrowser.Common.Configuration;
+using MediaBrowser.Common.Plugins;
+using MediaBrowser.Model.Plugins;
+using MediaBrowser.Model.Serialization;
+
+namespace Jellyfin.Plugin.EpisodeLimit;
+
+/// <summary>
+/// Episode Limit Plugin - Stops playback after a specified number of episodes.
+/// Perfect for a sleep timer based on episode count rather than time.
+/// </summary>
+public class Plugin : BasePlugin<PluginConfiguration>, IHasWebPages
 {
-    _logger.LogInformation("Episode Limit Plugin: Starting...");
-
-    // Register the Middleware to inject the script into HTML pages
-    // This is the key fix for Jellyfin 10.11+
-    try
+    public Plugin(IApplicationPaths applicationPaths, IXmlSerializer xmlSerializer)
+        : base(applicationPaths, xmlSerializer)
     {
-        // We need to access the IApplicationBuilder to add middleware.
-        // In Jellyfin 10.11, this is often done via the PluginServiceRegistrator
-        // or by accessing the host's services.
-        
-        // If you have access to the IApplicationBuilder via the host:
-        // var appBuilder = _serviceProvider.GetService<IApplicationBuilder>();
-        // if (appBuilder != null) {
-        //     appBuilder.UseMiddleware<EpisodeLimitMiddleware>();
-        // }
-
-        // ALTERNATIVE (Simpler for 10.11):
-        // Since direct middleware injection is hard, we will rely on the 
-        // fact that the plugin serves the file. 
-        // The user (you) will manually inject the script tag once, 
-        // OR we use a "Startup" class if the plugin framework supports it.
-        
-        // For now, let's assume we can register the middleware via the 
-        // PluginServiceRegistrator.cs file (see below).
-        
-        _logger.LogInformation("Episode Limit Plugin: Started. Please ensure Middleware is registered.");
+        Instance = this;
     }
-    catch (Exception ex)
+
+    /// <inheritdoc />
+    public override string Name => "Episode Limit";
+
+    /// <inheritdoc />
+    public override Guid Id => Guid.Parse("a1b2c3d4-e5f6-7890-abcd-ef1234567890");
+
+    /// <inheritdoc />
+    public override string Description => "Automatically stops playback after a specified number of episodes. Great for falling asleep to your favourite shows!";
+
+    /// <summary>
+    /// Gets the current plugin instance.
+    /// </summary>
+    public static Plugin? Instance { get; private set; }
+
+    /// <inheritdoc />
+    public IEnumerable<PluginPageInfo> GetPages()
     {
-        _logger.LogError(ex, "Episode Limit Plugin: Failed to start");
+        return new[]
+        {
+            new PluginPageInfo
+            {
+                Name = Name,
+                EmbeddedResourcePath = $"{GetType().Namespace}.Configuration.configPage.html"
+            },
+            new PluginPageInfo
+            {
+                Name = "episodelimit.js",
+                EmbeddedResourcePath = $"{GetType().Namespace}.Web.episodelimit.js"
+            }
+        };
     }
 }
